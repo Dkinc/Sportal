@@ -14,7 +14,8 @@ public class User {
 	private String email;
 	private String profilePic;// url --> profile pic
 	
-
+    public User(){}
+	
 	public User(String username, String password ,String email) {
 		this.username = username;
 		this.password = password;
@@ -51,11 +52,31 @@ public class User {
 		}
 	}
 	
+	
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		if(isStrongPassword(password)){
+			this.password = password;
+		}
+	}
+
 	void searchNewsByTitle(String title){
 		//ToDo
 	}
 	
 	void searchNewsByCategory(String category){
+		//ToDo
+	}
+	
+	void changePassword(){
+		//ToDo
+	}
+	
+	void changeProfilePic(){
 		//ToDo
 	}
 
@@ -67,7 +88,7 @@ public class User {
 	}
 	
 	// да се тества, за да се види дали работи коректно
-	public boolean isValidImageURL(String url){  
+    public boolean isValidImageURL(String url){  
         try {  
             BufferedImage image = ImageIO.read(new URL(url));    
             if(image != null){  
@@ -88,4 +109,25 @@ public class User {
             return false;  
         }  
     }
+	
+	boolean isStrongPassword(String password){
+		String lowerCase = "abcdefghijklmnopqrstuvwxyz";
+		String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String digits = "0123456789";
+		boolean lowCaseFlag = false;
+		boolean uppCaseFlag = false;
+		boolean digitFlag = true;
+		for (int i = 0; i < lowerCase.length(); i++) {
+			if(password.indexOf(lowerCase.charAt(i)) != -1){
+				lowCaseFlag = true;
+			}
+			if(password.indexOf(upperCase.charAt(i)) != -1){
+				uppCaseFlag = true;
+			}
+			if(i<digits.length() && password.indexOf(digits.charAt(i)) != -1){
+				digitFlag = true;
+			}
+		}
+		return (password.length() >= 5) && lowCaseFlag && uppCaseFlag && digitFlag;
+	}
 }

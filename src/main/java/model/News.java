@@ -68,5 +68,21 @@ public class News {
 		}
 	}
 	
-	
+	public TreeSet<String> getPicturesURL() {
+		return picturesURL;
+	}
+
+	public void setPicturesURL(TreeSet<String> picturesURL) {
+		boolean validUrl = true;
+		for (String url : picturesURL) {
+			if(!new Admin().isValidImageURL(url)){
+				validUrl = false;
+				break;
+			}
+		}
+		if(validUrl){
+			this.picturesURL = picturesURL;
+		}
+	}
+
 }
