@@ -7,6 +7,8 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import model.db.UserDAO;
+
 public class User {
 
 	private String username;
@@ -16,10 +18,14 @@ public class User {
 	
     public User(){}
 	
-	public User(String username, String password ,String email) {
+	public User(String username, String password, String email) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
+	}
+	
+	public boolean hasAdministrationFunctionality(){
+		return false;
 	}
 	
 	public String getUsername() {
@@ -72,12 +78,21 @@ public class User {
 		//ToDo
 	}
 	
-	void changePassword(){
-		//ToDo
+	void changePassword(String password){
+		if(isStrongPassword(password)){
+			this.password = password;
+			UserDAO.getInstance().writeNewPassword(this,password);
+		}
 	}
 	
-	void changeProfilePic(){
-		//ToDo
+	void changeProfilePic(String url){
+		if(isValidImageURL(url)){
+			this.profilePic = url;
+			UserDAO.getInstance().writeNewProfilePic(this,url);
+		}
+		else{
+			System.out.println("invalid url for image");
+		}
 	}
 
 	public boolean isValidEmailAddress(String email) {

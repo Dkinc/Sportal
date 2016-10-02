@@ -8,10 +8,12 @@ public class Admin extends User{
 		super(username, password, email);	
 	}
 
-	void addNews(){
-		//ToDo
+	public void addNews(String title, String text, String category, String picturesURL, String videoURL){
+		NewsManager.getInstance().makeNews(title, text, category, picturesURL, videoURL);
 	}
-	void addVideoNews(){
-		//ToDo
+	
+	@Override
+	public boolean hasAdministrationFunctionality() {
+		return true;
 	}
 }

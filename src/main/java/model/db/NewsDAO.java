@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.HashSet;
 
 import model.News;
-import model.User;
 
 public class NewsDAO {
 
@@ -75,7 +74,7 @@ public class NewsDAO {
 			System.out.println("problems with getCategoryId method !!!");
 			e.printStackTrace();
 		}
-		return -1; // 
+		return -1; 
 	}
 	
 }

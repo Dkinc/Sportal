@@ -25,18 +25,18 @@ private HashSet<News> allNews;
 		return instance;
 	}
 	/*
-	 * 
+	 * Accessible only for Admin (method addNews(...))
 	 */
 	public synchronized void makeNews(String title, String text, String category, String picturesURL, String videoURL){
 		News n = new News(title, text, category, picturesURL, videoURL);
-		allNews.add(n);//������
+		allNews.add(n);
 		NewsDAO.getInstance().addNews(n);
 	}
 	
 	 public synchronized HashSet<News> searchNewsByTitle(String title){
 		 HashSet<News> searchResult = new HashSet<News>();
 			for (News news : allNews) {
-				if(news.getTitle().contains(title) || title.equals(news.getTitle())){
+				if(news.getTitle().contains(title) || title.contains(news.getTitle())){
 					searchResult.add(news);
 				}
 			}
@@ -46,11 +46,11 @@ private HashSet<News> allNews;
 	 public synchronized HashSet<News> searchNewsByCategory(String category){
 		 HashSet<News> searchResult = new HashSet<News>();
 			for (News news : allNews) {
-				if(news.getCategory().equals(category)){
+				if(news.getCategory().equalsIgnoreCase(category)){
 					searchResult.add(news);
 				}
 			}
 			return searchResult;
     }
-	 
+
 }

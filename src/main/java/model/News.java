@@ -1,7 +1,5 @@
 package model;
 
-import java.util.TreeSet;
-
 public class News {
 
 	private String title;

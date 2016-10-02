@@ -27,7 +27,9 @@ public class Comment {
 	}
 
 	public void setNewsTitle(String newsTitle) {
-		this.newsTitle = newsTitle;
+		if(newsTitle != null && newsTitle != ""){
+			this.newsTitle = newsTitle;
+		}
 	}
 
 	public String getUsername() {
@@ -35,7 +37,9 @@ public class Comment {
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		if(username != null && username != ""){
+			this.username = username;
+		}
 	}
 
 	public String getText() {
@@ -47,7 +51,9 @@ public class Comment {
 	}
 
 	public void setDateAndTime(String dateAndTime) {
-		this.dateAndTime = dateAndTime;
+		if(dateAndTime != null && dateAndTime != ""){
+			this.dateAndTime = dateAndTime;
+		}
 	}
 
 	public void setText(String text) {
