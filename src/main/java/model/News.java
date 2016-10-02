@@ -7,17 +7,19 @@ public class News {
 	private String title;
 	private String text;
 	private String category;
-	private TreeSet<String> picturesURL;// picures for concrete news, #pictures = equal or more than 1 and less than 5 
+//	private TreeSet<String> picturesURL;// picures for concrete news, #pictures = equal or more than 1 and less than 5 - complicated.More columns for pics in db .
+	private String picturesURL;
 	private String videoURL;
 	private int numberOfReads = 0;
 	
-	public News(String title, String text, String category, TreeSet<String> picturesURL, String videoURL) {
+	public News(String title, String text, String category, String picturesURL, String videoURL) {
 		super();
 		this.title = title;
 		this.text = text;
 		this.category = category;
 		this.picturesURL = picturesURL;
 		this.videoURL = videoURL;
+		this.numberOfReads = 0;
 	}
 
 	public String getTitle() {
@@ -68,19 +70,12 @@ public class News {
 		}
 	}
 	
-	public TreeSet<String> getPicturesURL() {
+	public String getPicturesURL() {
 		return picturesURL;
 	}
 
-	public void setPicturesURL(TreeSet<String> picturesURL) {
-		boolean validUrl = true;
-		for (String url : picturesURL) {
-			if(!new Admin().isValidImageURL(url)){
-				validUrl = false;
-				break;
-			}
-		}
-		if(validUrl){
+	public void setPicturesURL(String picturesURL) {
+		if(new Admin().isValidImageURL(picturesURL)){
 			this.picturesURL = picturesURL;
 		}
 	}

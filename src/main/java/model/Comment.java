@@ -2,22 +2,52 @@ package model;
 
 public class Comment {
 
-	private User user; 
-	private String text;
 	private String title;
+	private String text;
 	private String dateAndTime; // time of publishing
-	private int likes = 0;
-	private int dislikes = 0;
-	
-	public Comment(User user, String text, String title) {
+	private int likes;
+	private int dislikes;
+	private String newsTitle; // zaglavieto na nowinata za koqto se otnasq komentara
+	private String username; // username na usera koito pishe komentara
+
+
+	public Comment(String title, String text, String dateAndTime, String newsTitle, String username ) {
 		super();
-		this.user = user;
+		this.newsTitle = newsTitle;
+		this.username = username;
 		this.text = text;
 		this.title = title;
+		this.dateAndTime = dateAndTime;
+		this.likes = 0;
+		this.dislikes = 0;
+	}
+
+	public String getNewsTitle() {
+		return newsTitle;
+	}
+
+	public void setNewsTitle(String newsTitle) {
+		this.newsTitle = newsTitle;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getText() {
 		return text;
+	}
+
+	public String getDateAndTime() {
+		return dateAndTime;
+	}
+
+	public void setDateAndTime(String dateAndTime) {
+		this.dateAndTime = dateAndTime;
 	}
 
 	public void setText(String text) {
@@ -54,9 +84,5 @@ public class Comment {
 		if(dislikes>0){
 			this.dislikes = dislikes;
 		}
-	}
-	
-	public String getUserName(User user){
-		return user.getUsername();
 	}
 }
