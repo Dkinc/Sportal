@@ -42,6 +42,17 @@ private HashSet<News> allNews;
 			}
 			return searchResult;
     }
+	 /*
+	  * ???????? какво да върна ако няма такава новина!
+	  */
+	 public synchronized News getNewsByTitle(String title){
+			for (News news : allNews) {
+				if(news.getTitle().equalsIgnoreCase(title)){
+					return news;
+				}
+			}
+			return new News(title, "No such news", " ", " ", " ");
+    }
 	 
 	 public synchronized HashSet<News> searchNewsByCategory(String category){
 		 HashSet<News> searchResult = new HashSet<News>();

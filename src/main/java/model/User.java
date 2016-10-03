@@ -70,25 +70,17 @@ public class User {
 		}
 	}
 
-	void searchNewsByTitle(String title){
-		//ToDo
-	}
-	
-	void searchNewsByCategory(String category){
-		//ToDo
-	}
-	
-	void changePassword(String password){
+	public void changePassword(String password){
 		if(isStrongPassword(password)){
 			this.password = password;
-			UserDAO.getInstance().writeNewPassword(this,password);
+			UserDAO.getInstance().writeNewPassword(this.getUsername(),password);
 		}
 	}
 	
-	void changeProfilePic(String url){
+	public void changeProfilePic(String url){
 		if(isValidImageURL(url)){
 			this.profilePic = url;
-			UserDAO.getInstance().writeNewProfilePic(this,url);
+			UserDAO.getInstance().writeNewProfilePic(this.getUsername(),url);
 		}
 		else{
 			System.out.println("invalid url for image");

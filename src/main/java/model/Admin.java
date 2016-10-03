@@ -1,20 +1,26 @@
 package model;
 
-public class Admin extends User {
+public class Admin extends User{
 
-	public Admin() {
-	}
-
+	private static Admin instance;
+	
+	public Admin(){}
+	
 	public Admin(String username, String password, String email) {
-		super(username, password, email);
+		super(username, password, email);	
 	}
-
-	public void addNews(String title, String text, String category, String picturesURL, String videoURL) {
-		if (hasAdministrationFunctionality()) {
-			NewsManager.getInstance().makeNews(title, text, category, picturesURL, videoURL);
+	
+	public synchronized static Admin getInstance(){
+		if(instance == null){
+			instance = new Admin();
 		}
+		return instance;
 	}
 
+	public void addNews(String title, String text, String category, String picturesURL, String videoURL){
+		NewsManager.getInstance().makeNews(title, text, category, picturesURL, videoURL);
+	}
+	
 	@Override
 	public boolean hasAdministrationFunctionality() {
 		return true;

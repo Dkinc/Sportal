@@ -57,9 +57,8 @@ private static UserDAO instance;
 		
 	}
 
-	public void writeNewPassword(User user, String password) {
-	    
-		String username = user.getUsername();
+	public void writeNewPassword(String username, String password) {
+
 		try {
 			Statement st = DBManager.getInstance().getConnection().createStatement();
 			st.executeUpdate("UPDATE users SET password = " + password +" WHERE username = " + username + " ;");
@@ -69,9 +68,8 @@ private static UserDAO instance;
 		}
 	}
 
-	public void writeNewProfilePic(User user, String url) {
+	public void writeNewProfilePic(String username, String url) {
 		
-		String username = user.getUsername();
 		try {
 			Statement st = DBManager.getInstance().getConnection().createStatement();
 			st.executeUpdate("UPDATE user_profile SET profile_pic = " + url +" WHERE Users_username = " + username + " ;");
